@@ -749,7 +749,7 @@ static void _can_init_freq_direct(can_t *obj, const can_pinmap_t *pinmap, int hz
     /*  Use default values for rist init */
     obj->CanHandle.Instance = (CAN_TypeDef *)pinmap->peripheral;
     obj->CanHandle.Init.TTCM = DISABLE;
-    obj->CanHandle.Init.ABOM = DISABLE;
+    obj->CanHandle.Init.ABOM = ENABLE;
     obj->CanHandle.Init.AWUM = DISABLE;
     obj->CanHandle.Init.NART = DISABLE;
     obj->CanHandle.Init.RFLM = DISABLE;
