@@ -577,7 +577,12 @@ int serial_readable(serial_t *obj)
      *  possible OVERRUN error and discard it
      */
     if (__HAL_UART_GET_FLAG(huart, UART_FLAG_ORE)) {
-        __HAL_UART_CLEAR_OREFLAG(huart);
+        if (__HAL_UART_GET_FLAG(huart, UART_FLAG_RXNE) != RESET) {
+            return 1;
+        } else {
+            __HAL_UART_CLEAR_OREFLAG(huart);
+            return 0;
+        }
     }
     // Check if data is received
     return (__HAL_UART_GET_FLAG(huart, UART_FLAG_RXNE) != RESET) ? 1 : 0;
